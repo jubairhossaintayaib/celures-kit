@@ -394,6 +394,7 @@ nav {
 .total-divider { border: none; border-top: 1px solid var(--gray-200); margin: 10px 0; }
 .total-final { display: flex; justify-content: space-between; font-size: 16px; font-weight: 600; color: var(--black); }
 .total-final .amount { font-size: 17px; }
+.total-pending { font-size: 13px; color: var(--gray-400); font-style: italic; text-align: center; padding: 4px 0; }
 
 .confirm-btn {
   width: 100%; height: 56px;
@@ -417,6 +418,92 @@ nav {
   max-width: 90vw; text-align: center; text-overflow: ellipsis; overflow: hidden;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── MOBILE MARQUEE BANNER ── */
+.marquee-banner {
+  background: var(--black);
+  color: var(--white);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 9px 0;
+  position: relative;
+}
+@media (min-width: 900px) { .marquee-banner { display: none; } }
+.marquee-track {
+  display: inline-flex;
+  animation: marquee-scroll 16s linear infinite;
+}
+.marquee-text {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding-right: 48px;
+  flex-shrink: 0;
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── COUNTDOWN TIMER ── */
+.countdown-section {
+  background: var(--black);
+  border-radius: 12px;
+  padding: 16px 16px 14px;
+  margin-bottom: 18px;
+}
+.countdown-label {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-align: center;
+  line-height: 1.5;
+}
+.countdown-boxes {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+.countdown-box {
+  background: #1c1c1c;
+  border: 1px solid #2e2e2e;
+  border-radius: 8px;
+  padding: 9px 0;
+  width: 64px;
+  text-align: center;
+}
+.countdown-num {
+  display: block;
+  font-family: ui-monospace, 'SF Mono', 'Roboto Mono', 'Courier New', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ff5b4d;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.countdown-unit {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-top: 4px;
+}
+.countdown-sep {
+  color: #555;
+  font-size: 22px;
+  font-weight: 600;
+  padding-top: 6px;
+}
+.countdown-expired {
+  text-align: center;
+  color: #ff5b4d;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 0;
+}
 </style>
 </head>
 <body>
@@ -430,6 +517,14 @@ nav {
     </a>
   </div>
 </nav>
+
+<!-- MOBILE MARQUEE BANNER (before video, mobile only) -->
+<div class="marquee-banner">
+  <div class="marquee-track">
+    <span class="marquee-text">WEEKEND SPECIAL OFFER UNTIL SATURDAY 11:59 PM! GET FREE 30 ML PERFUME WITH OUR DISCOVERY SET!</span>
+    <span class="marquee-text">WEEKEND SPECIAL OFFER UNTIL SATURDAY 11:59 PM! GET FREE 30 ML PERFUME WITH OUR DISCOVERY SET!</span>
+  </div>
+</div>
 
 <div class="page-body">
 <div class="product-layout">
@@ -450,13 +545,20 @@ nav {
 
     <!-- Product Info -->
     <div class="product-info">
-      <div class="badge-row">
-        <span class="badge badge-sale">🎁 Free 30ml Gift Included</span>
+      <div class="countdown-section">
+        <div class="countdown-label">⏰ Offer is available until Sunday Midnight.<br>Time remaining:</div>
+        <div class="countdown-boxes" id="countdownBoxes">
+          <div class="countdown-box"><span class="countdown-num" id="cdHours">00</span><span class="countdown-unit">Hours</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-box"><span class="countdown-num" id="cdMinutes">00</span><span class="countdown-unit">Minutes</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-box"><span class="countdown-num" id="cdSeconds">00</span><span class="countdown-unit">Seconds</span></div>
+        </div>
       </div>
 
       <h1 class="product-title">Perfume Discovery Set <span class="ml-label">(10 x 5ml)</span></h1>
 
-      <div style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px; font-style: italic;">10 টি বেস্টসেলিং perfume এর 5ml sample + আপনার পছন্দের 1 টি 30ml perfume সম্পূর্ণ ফ্রি</div>
+      <div style="font-size: 18px; color: var(--gray-600); margin-bottom: 16px; font-style: italic;">10 টি BEST SELLING perfume এর 5ml bottle + আপনার পছন্দের 1 টি 30ml perfume সম্পূর্ণ ফ্রি</div>
 
       <hr class="divider-line">
 
@@ -469,7 +571,7 @@ nav {
         Cash on Delivery — পণ্য পেয়ে টাকা দিন
       </div>
       <div class="delivery-row">
-        <div class="delivery-pill">🚚 ডেলিভারি চার্জ — সারা বাংলাদেশে ফ্ল্যাট ৳৬০</div>
+        <div class="delivery-pill">🚚 ডেলিভারি চার্জ — ঢাকার ভেতরে ৳৮০, বাইরে ৳১১০</div>
       </div>
     </div>
 
@@ -562,12 +664,13 @@ nav {
         <div class="total-label">Order Summary</div>
         <div class="total-row main"><span>Perfume Discovery Set (10 x 5ml)</span><span>Tk 1,390</span></div>
         <div class="total-row"><span>আপনার Free Gift (30ml)</span><span id="summaryGiftName">—</span></div>
-        <div class="total-row"><span>Delivery (সারা বাংলাদেশ)</span><span>Tk 60</span></div>
+        <div class="total-row" id="summaryDeliveryRow"><span>Delivery</span><span id="deliveryAmt">—</span></div>
         <hr class="total-divider">
-        <div class="total-final">
+        <div class="total-final" id="totalFinal" style="display:none">
           <span>Total (Cash on Delivery)</span>
-          <span class="amount">Tk 1,450</span>
+          <span class="amount" id="totalAmt"></span>
         </div>
+        <div class="total-pending" id="totalPending">জেলা সিলেক্ট করলে মোট মূল্য দেখাবে</div>
       </div>
 
       <button class="confirm-btn" id="confirmBtn" onclick="submitOrder()">অর্ডার নিশ্চিত করুন →</button>
@@ -585,7 +688,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">এই offer এ কী পাবো?</div>
-          <div class="faq-a">আপনি পাবেন ১০টি বিখ্যাত perfume এর 5ml sample (Inspired versions) + ১টি 30ml perfume সম্পূর্ণ ফ্রি, যেটা আপনি নিজে বেছে নিতে পারবেন। সব মিলিয়ে মাত্র ১,৩৯০ টাকা + ৬০ টাকা ডেলিভারি।</div>
+          <div class="faq-a">আপনি পাবেন ১০টি বিখ্যাত perfume এর 5ml bottle (Inspired versions) + ১টি 30ml perfume সম্পূর্ণ ফ্রি, যেটা আপনি নিজে বেছে নিতে পারবেন। সব মিলিয়ে মাত্র ১,৩৯০ টাকা + ডেলিভারি চার্জ (ঢাকায় ৮০ টাকা, ঢাকার বাইরে ১১০ টাকা)।</div>
         </div>
       </div>
 
@@ -601,7 +704,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">Free গিফট কীভাবে বেছে নেব?</div>
-          <div class="faq-a">Order form এর উপরে একটি dropdown আছে — সেখান থেকে আপনার পছন্দের 30ml perfume বেছে নিন। যেগুলোর স্টক শেষ হয়ে যায় সেগুলো লিস্ট থেকে automatically সরে যায়। বুঝতে না পারলে "প্রয়োজন হলে সাজেশন নিন" অপশনটি বেছে নিন — আমরা আপনার জন্য বেছে দেব।</div>
+          <div class="faq-a">Order form এর উপরে একটি dropdown আছে — সেখান থেকে আপনার পছন্দের 30ml perfume বেছে নিন। যেগুলোর স্টক শেষ হয়ে যায় সেগুলো লিস্ট থেকে automatically সরে যায়। বুঝতে না পারলে "আমার সাজেশন লাগবে" অপশনটি বেছে নিন — আমরা আপনার জন্য বেছে দেব।</div>
         </div>
       </div>
 
@@ -625,7 +728,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">Delivery charge ও সময়?</div>
-          <div class="faq-a">ডেলিভারি চার্জ সারা বাংলাদেশে ফ্ল্যাট ৬০ টাকা। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
+          <div class="faq-a">ডেলিভারি চার্জ ঢাকার ভেতরে ৳৮০ এবং ঢাকার বাইরে ৳১১০। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
         </div>
       </div>
 
@@ -678,6 +781,46 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
+// ── COUNTDOWN TIMER ──
+// Offer ends at June 21, 12:00 AM (Asia/Dhaka time).
+// ⚠️ Update this date for future campaigns — format: 'YYYY-MM-DDTHH:MM:SS+06:00'
+const OFFER_DEADLINE = new Date('2026-06-21T00:00:00+06:00');
+let offerExpired = false;
+let countdownInterval = null;
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = OFFER_DEADLINE - now;
+  const boxesEl = document.getElementById('countdownBoxes');
+
+  if (diff <= 0) {
+    offerExpired = true;
+    boxesEl.innerHTML = '<div class="countdown-expired">⏱ অফারটি শেষ হয়ে গেছে — Offer Ended</div>';
+    disableOrdering();
+    if (countdownInterval) clearInterval(countdownInterval);
+    return;
+  }
+
+  const totalSeconds = Math.floor(diff / 1000);
+  const hours   = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  document.getElementById('cdHours').textContent   = String(hours).padStart(2, '0');
+  document.getElementById('cdMinutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('cdSeconds').textContent = String(seconds).padStart(2, '0');
+}
+
+function disableOrdering() {
+  const btn = document.getElementById('confirmBtn');
+  btn.disabled = true;
+  btn.textContent = 'অফার শেষ হয়ে গেছে — Offer Ended';
+  const giftSel = document.getElementById('giftSelect');
+  if (giftSel) giftSel.disabled = true;
+}
+
+updateCountdown();
+countdownInterval = setInterval(updateCountdown, 1000);
+
 // ── FREE GIFT INVENTORY (live from Supabase) ──
 let giftStock = []; // [{name, stock, sort_order}]
 
@@ -700,12 +843,12 @@ function renderGiftOptions() {
   giftStock.filter(g => g.stock > 0).forEach(g => {
     const opt = document.createElement('option');
     opt.value = g.name;
-    opt.textContent = `${g.name} (${g.stock} বাকি)`;
+    opt.textContent = `${g.name} (${g.stock} টা বাকি)`;
     sel.appendChild(opt);
   });
   const suggestOpt = document.createElement('option');
   suggestOpt.value = 'suggestion';
-  suggestOpt.textContent = 'প্রয়োজন হলে সাজেশন নিন';
+  suggestOpt.textContent = 'আমার সাজেশন লাগবে';
   sel.appendChild(suggestOpt);
 
   if (currentVal === 'suggestion' || inStockNames.includes(currentVal)) {
@@ -820,6 +963,7 @@ districtInput.addEventListener('input', function() {
   const q = this.value.toLowerCase().trim();
   renderDistricts(q ? DISTRICTS.filter(d => d.toLowerCase().includes(q)) : DISTRICTS);
   districtDropdown.classList.add('open');
+  updateTotal();
 });
 districtInput.addEventListener('focus', function() {
   const q = this.value.toLowerCase().trim();
@@ -839,6 +983,22 @@ function renderDistricts(list) {
 function pickDistrict(name) {
   selectedDistrict = name; districtInput.value = name;
   districtDropdown.classList.remove('open');
+  updateTotal();
+}
+
+function updateTotal() {
+  if (!selectedDistrict) {
+    document.getElementById('deliveryAmt').textContent = '—';
+    document.getElementById('totalFinal').style.display = 'none';
+    document.getElementById('totalPending').style.display = 'block';
+    return;
+  }
+  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 110;
+  const total = 1390 + delivery;
+  document.getElementById('deliveryAmt').textContent    = 'Tk ' + delivery;
+  document.getElementById('totalAmt').textContent       = 'Tk ' + total;
+  document.getElementById('totalFinal').style.display   = 'flex';
+  document.getElementById('totalPending').style.display = 'none';
 }
 
 document.getElementById('fieldPhone').addEventListener('input', function() {
@@ -850,6 +1010,11 @@ function clearErr(fId, eId) { document.getElementById(fId).classList.remove('err
 
 // ── SUBMIT ORDER ──
 async function submitOrder() {
+  if (offerExpired) {
+    alert('দুঃখিত, এই অফারটি এখন শেষ হয়ে গেছে।');
+    return;
+  }
+
   let valid = true;
   const name    = document.getElementById('fieldName').value.trim();
   const phone   = document.getElementById('fieldPhone').value.trim();
@@ -892,17 +1057,19 @@ async function submitOrder() {
   }
 
   const giftLabel = gift === 'suggestion' ? 'Need suggestion' : gift;
+  const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 110;
+  const total = 1390 + delivery;
   const payload = {
     name, phone,
     district: selectedDistrict,
     address,
     order: 'Perfume Discovery Set (10x5ml)',
     gift: giftLabel,
-    delivery: 'Tk 60',
-    total: 'Tk 1450',
+    delivery: 'Tk ' + delivery,
+    total: 'Tk ' + total,
     timestamp: new Date().toLocaleString('en-BD', { timeZone:'Asia/Dhaka' })
   };
-  const params = new URLSearchParams({ name, phone, district: selectedDistrict, gift: giftLabel, total: 1450 });
+  const params = new URLSearchParams({ name, phone, district: selectedDistrict, gift: giftLabel, total: total });
 
   fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
     .then(()  => window.location.href = 'thankyou.html?' + params.toString())
