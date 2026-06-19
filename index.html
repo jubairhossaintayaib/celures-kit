@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- ⚠️ Replace this with a NEW domain verification code from Meta Events Manager for whichever domain/subdomain you host this page on -->
+<meta name="facebook-domain-verification" content="54apk5zpbcoiaqv7aig8d5lcmmlpd5" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celures – Perfume Discovery Set (10 x 5ml) + Free 30ml Gift</title>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1517308272696814');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1517308272696814&ev=PageView&noscript=1"/></noscript>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Supabase JS client (powers the live free-gift stock) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --gray-100: #f4f4f2;
+  --gray-200: #e8e8e4;
+  --gray-400: #b0b0a8;
+  --gray-600: #6e6e68;
+  --green: #25D366;
+  --gold: #b9762a;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+  --nav-h: 56px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--black);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--white); border-bottom: 1px solid var(--gray-200);
+  height: var(--nav-h);
+  display: flex; align-items: center; padding: 0 20px;
+}
+.nav-inner {
+  width: 100%; max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo img { height: 20px; width: auto; display: block; }
+@media (min-width: 900px) { .logo img { height: 28px; } }
+.nav-whatsapp {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--green); color: #fff; text-decoration: none;
+  padding: 7px 16px; border-radius: 24px;
+  font-size: 12px; font-weight: 500;
+  transition: opacity 0.2s; white-space: nowrap;
+}
+.nav-whatsapp:hover { opacity: 0.88; }
+.nav-whatsapp svg { width: 15px; height: 15px; flex-shrink: 0; }
+@media (max-width: 400px) {
+  .nav-whatsapp span.wa-text { display: none; }
+  .nav-whatsapp { padding: 7px 10px; }
+}
+
+/* ── PAGE ── */
+.page-body { padding-top: var(--nav-h); }
+
+/* ── LAYOUT ── */
+.product-layout {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 900px) {
+  .product-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* ── LEFT COL ── */
+.left-col { width: 100%; }
+@media (min-width: 900px) {
+  .left-col {
+    width: 50%;
+    position: sticky;
+    top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    border-right: 1px solid var(--gray-200);
+  }
+  .left-col::-webkit-scrollbar { display: none; }
+}
+
+/* ── YouTube video ── */
+.video-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+.video-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* Desktop image grid */
+.desktop-image-grid { display: none; }
+@media (min-width: 900px) {
+  .desktop-image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 3px;
+  }
+  .desktop-image-grid .grid-thumb {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--gray-100);
+    position: relative;
+  }
+  .desktop-image-grid .grid-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.2s;
+  }
+  .desktop-image-grid .grid-thumb:hover img { transform: scale(1.04); }
+}
+
+/* ── RIGHT COL ── */
+.right-col { width: 100%; }
+@media (min-width: 900px) { .right-col { width: 50%; } }
+
+/* ── PRODUCT INFO ── */
+.product-info {
+  padding: 22px 20px 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+@media (min-width: 900px) { .product-info { padding: 32px 40px 28px; } }
+
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.badge {
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  border-radius: 4px; padding: 4px 10px;
+}
+.badge-sale { background: var(--black); color: var(--white); }
+
+.product-title {
+  font-family: var(--sans);
+  font-size: clamp(22px, 4.5vw, 34px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--black);
+  margin-bottom: 16px;
+}
+.product-title .ml-label {
+  font-size: 0.62em;
+  font-weight: 400;
+  color: var(--gray-600);
+}
+
+.divider-line { border: none; border-top: 1px solid var(--gray-200); margin: 0 0 18px; }
+
+.price-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.price-new { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--black); line-height: 1; }
+
+.cod-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #f0faf4; border: 1px solid #b6e2c8;
+  color: #1a7a40; border-radius: 6px;
+  padding: 8px 16px; font-size: 14px; font-weight: 500; margin-bottom: 10px;
+}
+.cod-badge svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.delivery-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 0; }
+.delivery-pill {
+  font-size: 13px; color: var(--gray-600);
+  border: 1px solid var(--gray-200); border-radius: 20px; padding: 5px 14px;
+}
+
+/* ── FREE GIFT SECTION (signature element) ── */
+.gift-section {
+  padding: 22px 20px 26px;
+  border-bottom: 1px solid var(--gray-200);
+  background: linear-gradient(180deg, #fff8ea 0%, var(--white) 100%);
+}
+@media (min-width: 900px) { .gift-section { padding: 26px 40px 30px; } }
+.gift-label {
+  font-size: 22px; font-weight: 600; color: var(--black); margin-bottom: 4px;
+  display: flex; align-items: center; gap: 8px;
+}
+.gift-sub { font-size: 13px; color: var(--gray-600); margin-bottom: 14px; line-height: 1.6; }
+.gift-select-wrap { position: relative; }
+.gift-select {
+  width: 100%;
+  padding: 15px 40px 15px 16px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  font-family: var(--sans); font-size: 15px; font-weight: 500;
+  color: var(--black); background: var(--white);
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  cursor: pointer;
+}
+.gift-select:focus { border-color: var(--black); outline: none; }
+.gift-select-arrow {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  pointer-events: none; color: var(--gray-600); font-size: 11px;
+}
+.gift-urgency { font-size: 12px; color: var(--gold); margin-top: 10px; }
+
+/* ── PERFUME LIST (what's in the box) ── */
+.perfume-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+@media (min-width: 600px) { .perfume-list { grid-template-columns: 1fr 1fr; } }
+.perfume-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px;
+  border: 1px solid var(--gray-200); border-radius: 8px;
+  background: var(--gray-100);
+}
+.perfume-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--black); color: var(--white);
+  font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.perfume-name { font-size: 14px; font-weight: 500; color: var(--black); }
+.perfume-note { font-size: 12px; color: var(--gray-400); margin-top: 16px; font-style: italic; line-height: 1.6; }
+
+/* ── MOBILE IMAGE GRID ── */
+.mobile-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 3px;
+  border-bottom: 1px solid var(--gray-200);
+}
+@media (min-width: 900px) { .mobile-image-grid { display: none; } }
+.grid-thumb {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--gray-100);
+  position: relative;
+}
+.grid-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.2s;
+}
+.grid-thumb:hover img { transform: scale(1.04); }
+
+/* ── IMAGE LIGHTBOX ── */
+.img-lightbox {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.96); z-index: 300;
+  flex-direction: column; align-items: center; justify-content: center;
+}
+.img-lightbox.open { display: flex; }
+.img-lightbox-viewport {
+  width: 100vw; height: 85vh; max-width: 500px;
+  position: relative; overflow: hidden;
+}
+.img-lightbox-track {
+  display: flex; height: 100%;
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.img-lightbox-slide { flex-shrink: 0; width: 100%; height: 100%; }
+.img-lightbox-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.img-lightbox-close {
+  position: absolute; top: 14px; right: 16px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.12); border: none; cursor: pointer;
+  color: #fff; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s; z-index: 10;
+}
+.img-lightbox-close:hover { background: rgba(255,255,255,0.25); }
+.img-lightbox-nav { display: flex; gap: 14px; margin-top: 16px; }
+.img-lightbox-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.12); border: none; cursor: pointer;
+  color: #fff; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.img-lightbox-btn:hover { background: rgba(255,255,255,0.28); }
+.img-lightbox-counter { color: rgba(255,255,255,0.45); font-size: 12px; letter-spacing: 1px; margin-top: 10px; }
+
+/* ── CONTENT SECTIONS ── */
+.section {
+  padding: 28px 20px;
+  border-bottom: 1px solid var(--gray-200);
+}
+@media (min-width: 900px) { .section { padding: 32px 40px; } }
+
+.section-title {
+  font-family: var(--serif); font-size: 28px; font-weight: 300;
+  color: var(--black); margin-bottom: 18px;
+}
+
+/* FAQ */
+.faq-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 15px 0; border-bottom: 1px solid var(--gray-100);
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+}
+.faq-check svg { width: 10px; height: 10px; }
+.faq-q { font-size: 16px; font-weight: 500; color: var(--black); margin-bottom: 5px; line-height: 1.4; }
+.faq-a { font-size: 15px; color: var(--gray-600); line-height: 1.9; }
+
+/* ORDER FORM */
+.form-title { font-family: var(--serif); font-size: 30px; font-weight: 300; color: var(--black); margin-bottom: 4px; }
+.form-subtitle { font-size: 15px; color: var(--gray-600); margin-bottom: 22px; }
+
+.form-group { margin-bottom: 15px; }
+.form-group label {
+  display: block; font-size: 11px; letter-spacing: 1.5px;
+  color: var(--gray-600); text-transform: uppercase; margin-bottom: 6px;
+}
+.form-group input, .form-group textarea {
+  width: 100%; padding: 13px 14px;
+  border: 1px solid var(--gray-200); border-radius: 8px;
+  font-family: var(--sans); font-size: 16px; color: var(--black);
+  background: var(--white); outline: none; transition: border-color 0.18s;
+  -webkit-appearance: none;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--black); }
+.form-group input.error, .form-group textarea.error { border-color: #b94040; }
+.form-group textarea { resize: none; height: 80px; }
+
+.district-wrapper { position: relative; }
+.district-input-wrap { position: relative; }
+.district-input-wrap input { padding-right: 34px; }
+.district-arrow { position: absolute; right: 13px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--gray-600); font-size: 10px; }
+.district-dropdown {
+  display: none; position: absolute;
+  top: calc(100% + 4px); left: 0; right: 0;
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 8px; max-height: 200px; overflow-y: auto;
+  z-index: 50; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.district-dropdown.open { display: block; }
+.district-option { padding: 11px 13px; font-size: 15px; cursor: pointer; color: var(--black); transition: background 0.1s; }
+.district-option:hover { background: var(--gray-100); }
+.district-option.no-results { color: var(--gray-600); cursor: default; }
+
+.error-msg { font-size: 13px; color: #b94040; margin-top: 4px; display: none; }
+.error-msg.show { display: block; }
+
+.order-total-box {
+  background: var(--gray-100); border: 1px solid var(--gray-200);
+  border-radius: 10px; padding: 16px 18px; margin: 20px 0 14px;
+}
+.total-label { font-size: 11px; letter-spacing: 2px; color: var(--gray-600); text-transform: uppercase; margin-bottom: 12px; }
+.total-row { display: flex; justify-content: space-between; font-size: 15px; color: var(--gray-600); margin-bottom: 6px; }
+.total-row.main { color: var(--black); }
+.total-divider { border: none; border-top: 1px solid var(--gray-200); margin: 10px 0; }
+.total-final { display: flex; justify-content: space-between; font-size: 16px; font-weight: 600; color: var(--black); }
+.total-final .amount { font-size: 17px; }
+
+.confirm-btn {
+  width: 100%; height: 56px;
+  background: var(--black); color: var(--white);
+  border: none; border-radius: 8px;
+  font-family: var(--sans); font-size: 15px;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.confirm-btn:hover { opacity: 0.8; }
+.confirm-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.form-note { font-size: 13px; color: var(--gray-400); text-align: center; margin-top: 12px; line-height: 1.7; }
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--black); color: var(--white);
+  padding: 10px 22px; border-radius: 30px;
+  font-size: 12px; letter-spacing: 1px;
+  opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 400; white-space: nowrap;
+  max-width: 90vw; text-align: center; text-overflow: ellipsis; overflow: hidden;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><img src="logo.png" alt="Celures"></div>
+    <a class="nav-whatsapp" href="https://wa.me/message/UDULI5NP36Q4L1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.836L.057 23.625a.75.75 0 00.921.918l5.884-1.536A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.695 9.695 0 01-4.949-1.355l-.355-.211-3.668.957.986-3.587-.231-.368A9.698 9.698 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      <span class="wa-text">Chat on WhatsApp</span>
+    </a>
+  </div>
+</nav>
+
+<div class="page-body">
+<div class="product-layout">
+
+  <!-- ── LEFT COL ── -->
+  <div class="left-col">
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/SyRF_dU_gR0?loop=1&playlist=SyRF_dU_gR0&controls=1&rel=0&modestbranding=1&showinfo=0"
+        title="Celures Perfume Discovery Set"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+    <div class="desktop-image-grid" id="desktopImageGrid"></div>
+  </div>
+
+  <!-- ── RIGHT COL ── -->
+  <div class="right-col">
+
+    <!-- Product Info -->
+    <div class="product-info">
+      <div class="badge-row">
+        <span class="badge badge-sale">🎁 Free 30ml Gift Included</span>
+      </div>
+
+      <h1 class="product-title">Perfume Discovery Set <span class="ml-label">(10 x 5ml)</span></h1>
+
+      <div style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px; font-style: italic;">10 টি বেস্টসেলিং perfume এর 5ml sample + আপনার পছন্দের 1 টি 30ml perfume সম্পূর্ণ ফ্রি</div>
+
+      <hr class="divider-line">
+
+      <div class="price-row">
+        <div class="price-new">৳১,৩৯০</div>
+      </div>
+
+      <div class="cod-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Cash on Delivery — পণ্য পেয়ে টাকা দিন
+      </div>
+      <div class="delivery-row">
+        <div class="delivery-pill">🚚 ডেলিভারি চার্জ — সারা বাংলাদেশে ফ্ল্যাট ৳৬০</div>
+      </div>
+    </div>
+
+    <!-- ── FREE GIFT SELECTION (live Supabase stock) ── -->
+    <div class="gift-section" id="freeGiftBlock">
+      <div class="gift-label">🎁 আপনার ফ্রি গিফট বেছে নিন (30ml)</div>
+      <div class="gift-sub">এই সেট অর্ডার করলেই সাথে পাচ্ছেন একটি 30ml perfume সম্পূর্ণ ফ্রি। নিচ থেকে পছন্দের একটি বেছে নিন — স্টক সীমিত, তাই লিস্টটি real-time এ আপডেট হয়।</div>
+      <div class="gift-select-wrap">
+        <select class="gift-select" id="giftSelect">
+          <option value="" disabled selected>লোড হচ্ছে...</option>
+        </select>
+        <span class="gift-select-arrow">▾</span>
+      </div>
+      <div class="error-msg" id="errGift">Please select your free gift.</div>
+      <div class="gift-urgency">⚡ যেগুলো স্টকে নেই সেগুলো এখানে দেখাবে না — দেরি না করে এখনই বেছে নিন।</div>
+    </div>
+
+    <!-- SCROLL TO ORDER BUTTON -->
+    <div style="padding: 16px 20px; border-bottom: 1px solid var(--gray-200);">
+      <button onclick="document.getElementById('orderFormBlock').scrollIntoView({behavior:'smooth', block:'start'})"
+        style="width:100%; height:52px; background:var(--black); color:var(--white); border:none; border-radius:8px; font-family:var(--sans); font-size:16px; font-weight:500; cursor:pointer; transition:opacity 0.2s;">
+        এখনই অর্ডার করতে চাই →
+      </button>
+    </div>
+    <div style="border-bottom: 1px solid var(--gray-200); padding: 4px 0;">
+      <div class="mobile-image-grid" id="mobileImageGrid"></div>
+    </div>
+
+    <!-- WHAT'S IN THE BOX -->
+    <div class="section">
+      <div class="section-title">এই সেটে যা থাকছে (10 x 5ml)</div>
+      <div class="perfume-list">
+        <div class="perfume-item"><span class="perfume-num">1</span><span class="perfume-name">Bleu De Chanel</span></div>
+        <div class="perfume-item"><span class="perfume-num">2</span><span class="perfume-name">Nautica Voyage</span></div>
+        <div class="perfume-item"><span class="perfume-num">3</span><span class="perfume-name">Lacoste Blanc</span></div>
+        <div class="perfume-item"><span class="perfume-num">4</span><span class="perfume-name">Dolce & Gabbana The One</span></div>
+        <div class="perfume-item"><span class="perfume-num">5</span><span class="perfume-name">Spicebomb Extreme</span></div>
+        <div class="perfume-item"><span class="perfume-num">6</span><span class="perfume-name">Paco Rabanne Invictus</span></div>
+        <div class="perfume-item"><span class="perfume-num">7</span><span class="perfume-name">Hawas Kobra</span></div>
+        <div class="perfume-item"><span class="perfume-num">8</span><span class="perfume-name">Jean Paul Gaultier Ultra Male</span></div>
+        <div class="perfume-item"><span class="perfume-num">9</span><span class="perfume-name">Davidoff Coolwater</span></div>
+        <div class="perfume-item"><span class="perfume-num">10</span><span class="perfume-name">Stronger With You Intensely</span></div>
+      </div>
+      <div class="perfume-note">* সবগুলো Inspired versions — তৈরি বিশ্বের সেরা fragrance company LUZI এর premium perfume oil দিয়ে। প্লাস আপনার বেছে নেওয়া 30ml perfume সম্পূর্ণ ফ্রি।</div>
+    </div>
+
+    <!-- RETURN POLICY -->
+    <div style="padding: 16px 20px; background: #c0392b; border-bottom: 1px solid #a93226;">
+      <div style="font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.85;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; display: block; margin-bottom: 7px;">◼️ Return Policy</span>
+        ডেলিভারিম্যান থাকা অবস্থায় প্রোডাক্ট খুলে চেক করে নিতে পারবেন। আমরা সারা দেশে ক্যাশ অন হোম ডেলিভারি দিয়ে থাকি। সঠিক প্রোডাক্ট পাওয়ার পরে পছন্দ না হলে সম্পূর্ণ সেট ডেলিভারি চার্জ দিয়ে রিটার্ন করতে পারবেন। যেহেতু এটি একটি heavily discounted bundle offer, তাই সেট থেকে একটি বা কয়েকটি বোতল আলাদাভাবে রিটার্ন/এক্সচেঞ্জ করার অপশন নেই। ডেলিভারিম্যান চলে যাওয়ার পর কোনো অভিযোগ গ্রহনযোগ্য হবেনা।
+      </div>
+    </div>
+
+    <!-- ORDER FORM -->
+    <div class="section" id="orderFormBlock">
+      <div class="form-title">নাম ও ঠিকানা দিয়ে অর্ডার confirm করুন</div>
+
+      <div class="form-group">
+        <label>Full Name — পুরো নাম</label>
+        <input type="text" id="fieldName" placeholder="আপনার নাম লিখুন" autocomplete="name">
+        <div class="error-msg" id="errName">Please enter your name.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number — ফোন নম্বর</label>
+        <input type="tel" id="fieldPhone" placeholder="01XXXXXXXXX" autocomplete="tel" maxlength="11" inputmode="numeric">
+        <div class="error-msg" id="errPhone">Please enter a valid 11-digit number (01XXXXXXXXX).</div>
+      </div>
+
+      <div class="form-group">
+        <label>District — জেলা</label>
+        <div class="district-wrapper">
+          <div class="district-input-wrap">
+            <input type="text" id="districtInput" placeholder="জেলার নাম লিখুন..." autocomplete="off">
+            <span class="district-arrow">▾</span>
+          </div>
+          <div class="district-dropdown" id="districtDropdown"></div>
+        </div>
+        <div class="error-msg" id="errDistrict">Please select your district.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Full Address — পুরো ঠিকানা</label>
+        <textarea id="fieldAddress" placeholder="বাসা নম্বর, রোড, এলাকা, থানা..."></textarea>
+        <div class="error-msg" id="errAddress">Please enter your delivery address.</div>
+      </div>
+
+      <div class="order-total-box">
+        <div class="total-label">Order Summary</div>
+        <div class="total-row main"><span>Perfume Discovery Set (10 x 5ml)</span><span>Tk 1,390</span></div>
+        <div class="total-row"><span>আপনার Free Gift (30ml)</span><span id="summaryGiftName">—</span></div>
+        <div class="total-row"><span>Delivery (সারা বাংলাদেশ)</span><span>Tk 60</span></div>
+        <hr class="total-divider">
+        <div class="total-final">
+          <span>Total (Cash on Delivery)</span>
+          <span class="amount">Tk 1,450</span>
+        </div>
+      </div>
+
+      <button class="confirm-btn" id="confirmBtn" onclick="submitOrder()">অর্ডার নিশ্চিত করুন →</button>
+      <div class="form-note">
+        আমরা আপনাকে কল করে অর্ডারটি নিশ্চিত করবো।<br>
+        We will call you to confirm before dispatch.
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section" style="border-bottom:none; padding-bottom:60px;">
+      <div class="section-title">Frequently Asked Questions</div>
+
+      <div class="faq-item">
+        <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="faq-q">এই offer এ কী পাবো?</div>
+          <div class="faq-a">আপনি পাবেন ১০টি বিখ্যাত perfume এর 5ml sample (Inspired versions) + ১টি 30ml perfume সম্পূর্ণ ফ্রি, যেটা আপনি নিজে বেছে নিতে পারবেন। সব মিলিয়ে মাত্র ১,৩৯০ টাকা + ৬০ টাকা ডেলিভারি।</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="faq-q">এগুলো কি original নাকি inspired?</div>
+          <div class="faq-a">এগুলো inspired version — বিশ্বখ্যাত luxury brands এর inspiration এ তৈরি। আমরা শুধুমাত্র বিশ্বের সেরা fragrance company — <strong>LUZI</strong> — এর perfume oil ব্যবহার করি, যারা Chanel, Dior, Armani সহ বিশ্বের বড় বড় brands এর perfume তৈরিতেও raw material সরবরাহ করে।</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="faq-q">Free গিফট কীভাবে বেছে নেব?</div>
+          <div class="faq-a">Order form এর উপরে একটি dropdown আছে — সেখান থেকে আপনার পছন্দের 30ml perfume বেছে নিন। যেগুলোর স্টক শেষ হয়ে যায় সেগুলো লিস্ট থেকে automatically সরে যায়। বুঝতে না পারলে "প্রয়োজন হলে সাজেশন নিন" অপশনটি বেছে নিন — আমরা আপনার জন্য বেছে দেব।</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="faq-q">Free গিফট স্টক আউট হয়ে গেলে কী হবে?</div>
+          <div class="faq-a">আমাদের সব গিফট perfume এর স্টক সীমিত। কোনো একটি শেষ হয়ে গেলে সেটি সাথে সাথে dropdown থেকে সরে যাবে, যাতে কেউ এমন কিছু সিলেক্ট করতে না পারে যেটা আমাদের কাছে নেই।</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="faq-q">5ml কতদিন চলবে?</div>
+          <div class="faq-a">প্রতিদিন ৪–৫টি spray করলে প্রতিটি 5ml বোতল আনুমানিক ১০–১৫ দিন চলবে। যেহেতু ১০টি ভিন্ন scent আছে, প্রতিদিন mood অনুযায়ী আলাদা scent ব্যবহার করতে পারবেন।</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="faq-q">Delivery charge ও সময়?</div>
+          <div class="faq-a">ডেলিভারি চার্জ সারা বাংলাদেশে ফ্ল্যাট ৬০ টাকা। Order confirm হওয়ার পর ৪৮–৭২ ঘন্টায় পৌঁছে যাবে।</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="faq-q">Payment কিভাবে?</div>
+          <div class="faq-a">সম্পূর্ণ Cash on Delivery। Product হাতে পাওয়ার পর টাকা দেবেন — আগে কোনো payment নেই।</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end right-col -->
+</div><!-- end product-layout -->
+</div><!-- end page-body -->
+
+<!-- IMAGE LIGHTBOX SLIDER -->
+<div class="img-lightbox" id="imgLightbox" onclick="closeLightboxOnBg(event)">
+  <button class="img-lightbox-close" onclick="closeLightbox()">✕</button>
+  <div class="img-lightbox-viewport">
+    <div class="img-lightbox-track" id="lightboxTrack"></div>
+  </div>
+  <div class="img-lightbox-nav">
+    <button class="img-lightbox-btn" onclick="lightboxNav(-1)">‹</button>
+    <button class="img-lightbox-btn" onclick="lightboxNav(1)">›</button>
+  </div>
+  <div class="img-lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ========================================================================
+   ⚠️ SETUP — fill these 3 values in before publishing the page:
+   1) SUPABASE_URL + SUPABASE_ANON_KEY  → from your Supabase project (Settings > API)
+   2) SCRIPT_URL                        → your Google Apps Script Web App URL
+      (used to log orders to a Google Sheet, same pattern as your other pages)
+   ======================================================================== */
+const SUPABASE_URL = "https://muovktyibecoftwjunfb.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_-MNnQv5esM9e38aTpov_yA_vf6I49pW";
+const SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ── TOAST HELPER ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── FREE GIFT INVENTORY (live from Supabase) ──
+let giftStock = []; // [{name, stock, sort_order}]
+
+async function loadGiftInventory() {
+  const { data, error } = await sb
+    .from('gift_inventory')
+    .select('name, stock, sort_order')
+    .order('sort_order', { ascending: true });
+  if (error) { console.error('Gift inventory load error:', error); return; }
+  giftStock = data || [];
+  renderGiftOptions();
+}
+
+function renderGiftOptions() {
+  const sel = document.getElementById('giftSelect');
+  const currentVal = sel.value;
+  const inStockNames = giftStock.filter(g => g.stock > 0).map(g => g.name);
+
+  sel.innerHTML = '<option value="" disabled selected>আপনার ফ্রি গিফট বেছে নিন</option>';
+  giftStock.filter(g => g.stock > 0).forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g.name;
+    opt.textContent = `${g.name} (${g.stock} বাকি)`;
+    sel.appendChild(opt);
+  });
+  const suggestOpt = document.createElement('option');
+  suggestOpt.value = 'suggestion';
+  suggestOpt.textContent = 'প্রয়োজন হলে সাজেশন নিন';
+  sel.appendChild(suggestOpt);
+
+  if (currentVal === 'suggestion' || inStockNames.includes(currentVal)) {
+    sel.value = currentVal;
+  } else if (currentVal) {
+    showToast('"' + currentVal + '" স্টকে নেই, আরেকটি বেছে নিন');
+    document.getElementById('summaryGiftName').textContent = '—';
+  }
+}
+
+function subscribeToInventory() {
+  sb.channel('gift-inventory-realtime')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'gift_inventory' }, () => {
+      loadGiftInventory();
+    })
+    .subscribe();
+}
+
+document.getElementById('giftSelect').addEventListener('change', function() {
+  const val = this.value;
+  let label = '—';
+  if (val === 'suggestion') label = 'সাজেশন প্রয়োজন';
+  else if (val) label = val;
+  document.getElementById('summaryGiftName').textContent = label;
+  document.getElementById('errGift').classList.remove('show');
+});
+
+loadGiftInventory();
+subscribeToInventory();
+
+// ── IMAGE GRID ──
+// Add as many images as you like to the /images folder named gallery1.png, gallery2.png, etc.
+// Missing files are skipped automatically — just upload what you have.
+const GALLERY_IMAGES = Array.from({length: 8}, (_, i) => `images/gallery${i+1}.png`);
+let validImages = [], lightboxIdx = 0;
+
+function initImageGrids() {
+  const mobileGrid  = document.getElementById('mobileImageGrid');
+  const desktopGrid = document.getElementById('desktopImageGrid');
+  const lbTrack     = document.getElementById('lightboxTrack');
+
+  GALLERY_IMAGES.forEach((src) => {
+    const probe = new Image();
+    probe.onload = () => {
+      validImages.push(src);
+      const lbSlide = document.createElement('div');
+      lbSlide.className = 'img-lightbox-slide';
+      lbSlide.innerHTML = `<img src="${src}" alt="Product photo">`;
+      lbTrack.appendChild(lbSlide);
+
+      const mThumb = document.createElement('div');
+      mThumb.className = 'grid-thumb';
+      mThumb.innerHTML = `<img src="${src}" alt="Product">`;
+      mThumb.onclick = () => openLightbox(validImages.indexOf(src));
+      mobileGrid.appendChild(mThumb);
+
+      const dThumb = document.createElement('div');
+      dThumb.className = 'grid-thumb';
+      dThumb.innerHTML = `<img src="${src}" alt="Product">`;
+      dThumb.onclick = () => openLightbox(validImages.indexOf(src));
+      desktopGrid.appendChild(dThumb);
+    };
+    probe.src = src;
+  });
+}
+
+initImageGrids();
+
+// ── LIGHTBOX ──
+function openLightbox(idx) {
+  lightboxIdx = idx; updateLightbox();
+  document.getElementById('imgLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('imgLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLightboxOnBg(e) {
+  if (e.target === document.getElementById('imgLightbox')) closeLightbox();
+}
+function updateLightbox() {
+  document.getElementById('lightboxTrack').style.transform = `translateX(-${lightboxIdx * 100}%)`;
+  document.getElementById('lightboxCounter').textContent = (lightboxIdx + 1) + ' / ' + validImages.length;
+}
+function lightboxNav(dir) {
+  lightboxIdx = Math.max(0, Math.min(validImages.length - 1, lightboxIdx + dir));
+  updateLightbox();
+}
+let lbTouchX = 0;
+document.getElementById('imgLightbox').addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('imgLightbox').addEventListener('touchend', e => {
+  const diff = lbTouchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) lightboxNav(diff > 0 ? 1 : -1);
+});
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('imgLightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') lightboxNav(1);
+  if (e.key === 'ArrowLeft')  lightboxNav(-1);
+  if (e.key === 'Escape')     closeLightbox();
+});
+
+// ── DISTRICTS ──
+const DISTRICTS = ["Bagerhat","Bandarban","Barguna","Barishal","Bhola","Bogura","Brahmanbaria","Chandpur","Chattogram","Chuadanga","Cox's Bazar","Cumilla","Dhaka","Dinajpur","Faridpur","Feni","Gaibandha","Gazipur","Gopalganj","Habiganj","Jamalpur","Jashore","Jhalokati","Jhenaidah","Joypurhat","Khagrachhari","Khulna","Kishoreganj","Kurigram","Kushtia","Lakshmipur","Lalmonirhat","Madaripur","Magura","Manikganj","Meherpur","Moulvibazar","Munshiganj","Mymensingh","Naogaon","Narail","Narayanganj","Narsingdi","Natore","Netrokona","Nilphamari","Noakhali","Pabna","Panchagarh","Patuakhali","Pirojpur","Rajbari","Rajshahi","Rangamati","Rangpur","Satkhira","Shariatpur","Sherpur","Sirajganj","Sunamganj","Sylhet","Tangail","Thakurgaon"];
+let selectedDistrict = "";
+
+const districtInput    = document.getElementById('districtInput');
+const districtDropdown = document.getElementById('districtDropdown');
+
+districtInput.addEventListener('input', function() {
+  selectedDistrict = "";
+  const q = this.value.toLowerCase().trim();
+  renderDistricts(q ? DISTRICTS.filter(d => d.toLowerCase().includes(q)) : DISTRICTS);
+  districtDropdown.classList.add('open');
+});
+districtInput.addEventListener('focus', function() {
+  const q = this.value.toLowerCase().trim();
+  renderDistricts(q ? DISTRICTS.filter(d => d.toLowerCase().includes(q)) : DISTRICTS);
+  districtDropdown.classList.add('open');
+});
+document.addEventListener('click', e => { if (!e.target.closest('.district-wrapper')) districtDropdown.classList.remove('open'); });
+
+function renderDistricts(list) {
+  districtDropdown.innerHTML = list.length
+    ? list.map(d => `<div class="district-option" data-name="${d.replace(/"/g,'&quot;')}">${d}</div>`).join('')
+    : '<div class="district-option no-results">No district found</div>';
+  districtDropdown.querySelectorAll('.district-option[data-name]').forEach(el => {
+    el.addEventListener('click', () => pickDistrict(el.dataset.name));
+  });
+}
+function pickDistrict(name) {
+  selectedDistrict = name; districtInput.value = name;
+  districtDropdown.classList.remove('open');
+}
+
+document.getElementById('fieldPhone').addEventListener('input', function() {
+  this.value = this.value.replace(/[^0-9]/g,'').slice(0,11);
+});
+
+function showErr(fId, eId) { document.getElementById(fId).classList.add('error'); document.getElementById(eId).classList.add('show'); }
+function clearErr(fId, eId) { document.getElementById(fId).classList.remove('error'); document.getElementById(eId).classList.remove('show'); }
+
+// ── SUBMIT ORDER ──
+async function submitOrder() {
+  let valid = true;
+  const name    = document.getElementById('fieldName').value.trim();
+  const phone   = document.getElementById('fieldPhone').value.trim();
+  const address = document.getElementById('fieldAddress').value.trim();
+  const gift    = document.getElementById('giftSelect').value;
+
+  if (!name) { showErr('fieldName','errName'); valid = false; } else clearErr('fieldName','errName');
+  const pc = phone.replace(/\D/g,'');
+  if (pc.length !== 11 || !pc.startsWith('01')) { showErr('fieldPhone','errPhone'); valid = false; } else clearErr('fieldPhone','errPhone');
+  if (!selectedDistrict) { document.getElementById('errDistrict').classList.add('show'); valid = false; }
+  else document.getElementById('errDistrict').classList.remove('show');
+  if (!address) { showErr('fieldAddress','errAddress'); valid = false; } else clearErr('fieldAddress','errAddress');
+  if (!gift) { document.getElementById('errGift').classList.add('show'); valid = false; } else document.getElementById('errGift').classList.remove('show');
+
+  if (!valid) { document.getElementById('orderFormBlock').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
+
+  const btn = document.getElementById('confirmBtn');
+  btn.disabled = true; btn.textContent = 'Submitting...';
+
+  // Reserve the chosen free gift's stock FIRST (atomic, server-side).
+  // Skipped for "Need suggestion" since that doesn't reserve a specific bottle.
+  if (gift !== 'suggestion') {
+    try {
+      const { data, error } = await sb.rpc('decrement_gift_stock', { perfume_name: gift });
+      if (error || data === -1 || data === null) {
+        await loadGiftInventory();
+        alert('দুঃখিত! "' + gift + '" এর স্টক শেষ হয়ে গেছে। দয়া করে আরেকটি গিফট বেছে নিন।');
+        btn.disabled = false; btn.textContent = 'অর্ডার নিশ্চিত করুন →';
+        document.getElementById('giftSelect').value = '';
+        document.getElementById('summaryGiftName').textContent = '—';
+        document.getElementById('freeGiftBlock').scrollIntoView({ behavior:'smooth', block:'start' });
+        return;
+      }
+    } catch (e) {
+      console.error(e);
+      alert('একটি সমস্যা হয়েছে, আবার চেষ্টা করুন।');
+      btn.disabled = false; btn.textContent = 'অর্ডার নিশ্চিত করুন →';
+      return;
+    }
+  }
+
+  const giftLabel = gift === 'suggestion' ? 'Need suggestion' : gift;
+  const payload = {
+    name, phone,
+    district: selectedDistrict,
+    address,
+    order: 'Perfume Discovery Set (10x5ml)',
+    gift: giftLabel,
+    delivery: 'Tk 60',
+    total: 'Tk 1450',
+    timestamp: new Date().toLocaleString('en-BD', { timeZone:'Asia/Dhaka' })
+  };
+  const params = new URLSearchParams({ name, phone, district: selectedDistrict, gift: giftLabel, total: 1450 });
+
+  fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
+    .then(()  => window.location.href = 'thankyou.html?' + params.toString())
+    .catch(() => window.location.href = 'thankyou.html?' + params.toString());
+}
+</script>
+</body>
+</html>
