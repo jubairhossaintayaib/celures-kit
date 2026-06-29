@@ -108,28 +108,48 @@ nav {
   }
 }
 
-/* ── IMAGE GALLERY (replaces video, shown on all screen sizes) ── */
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  padding: 3px;
+/* ── IMAGE GALLERY (big main image + thumbnail strip, swipeable) ── */
+.gallery-wrap {
   border-bottom: 1px solid var(--gray-200);
 }
-@media (min-width: 900px) { .image-grid { border-bottom: none; } }
-.grid-thumb {
-  aspect-ratio: 1 / 1;
+@media (min-width: 900px) { .gallery-wrap { border-bottom: none; } }
+
+.gallery-main {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--gray-100);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-main-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.main-slide { flex-shrink: 0; width: 100%; height: 100%; }
+.main-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.gallery-thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.gallery-thumbs::-webkit-scrollbar { display: none; }
+.gallery-thumb {
+  width: 56px; height: 56px;
+  flex-shrink: 0;
+  border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
+  border: 2px solid transparent;
   background: var(--gray-100);
-  position: relative;
+  transition: border-color 0.15s;
 }
-.grid-thumb img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  transition: transform 0.2s;
-}
-.grid-thumb:hover img { transform: scale(1.04); }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-thumb.active { border-color: var(--black); }
 
 /* ── RIGHT COL ── */
 .right-col { width: 100%; }
@@ -486,7 +506,12 @@ nav {
 
   <!-- ── LEFT COL ── -->
   <div class="left-col">
-    <div class="image-grid" id="imageGrid"></div>
+    <div class="gallery-wrap" id="galleryWrap">
+      <div class="gallery-main" id="galleryMain">
+        <div class="gallery-main-track" id="galleryMainTrack"></div>
+      </div>
+      <div class="gallery-thumbs" id="galleryThumbs"></div>
+    </div>
   </div>
 
   <!-- ── RIGHT COL ── -->
@@ -835,30 +860,64 @@ subscribeToInventory();
 const GALLERY_IMAGES = Array.from({length: 8}, (_, i) => `images/gallery${i+1}.webp`);
 let validImages = [], lightboxIdx = 0;
 
-function initImageGrids() {
-  const grid    = document.getElementById('imageGrid');
-  const lbTrack = document.getElementById('lightboxTrack');
+function initGallery() {
+  const mainTrack  = document.getElementById('galleryMainTrack');
+  const thumbsWrap = document.getElementById('galleryThumbs');
+  const lbTrack    = document.getElementById('lightboxTrack');
 
   GALLERY_IMAGES.forEach((src) => {
     const probe = new Image();
     probe.onload = () => {
       validImages.push(src);
+      const idx = validImages.length - 1;
+
+      // Big main slide
+      const slide = document.createElement('div');
+      slide.className = 'main-slide';
+      slide.innerHTML = `<img src="${src}" alt="Product photo">`;
+      mainTrack.appendChild(slide);
+
+      // Small thumbnail
+      const thumb = document.createElement('div');
+      thumb.className = 'gallery-thumb';
+      thumb.innerHTML = `<img src="${src}" alt="Product">`;
+      thumb.onclick = () => goToMain(idx);
+      thumbsWrap.appendChild(thumb);
+
+      // Full-screen lightbox slide (tap main image to open)
       const lbSlide = document.createElement('div');
       lbSlide.className = 'img-lightbox-slide';
       lbSlide.innerHTML = `<img src="${src}" alt="Product photo">`;
       lbTrack.appendChild(lbSlide);
 
-      const thumb = document.createElement('div');
-      thumb.className = 'grid-thumb';
-      thumb.innerHTML = `<img src="${src}" alt="Product">`;
-      thumb.onclick = () => openLightbox(validImages.indexOf(src));
-      grid.appendChild(thumb);
+      updateThumbActiveStates();
     };
     probe.src = src;
   });
 }
 
-initImageGrids();
+let mainIdx = 0;
+function goToMain(idx) {
+  mainIdx = Math.max(0, Math.min(validImages.length - 1, idx));
+  document.getElementById('galleryMainTrack').style.transform = `translateX(-${mainIdx * 100}%)`;
+  updateThumbActiveStates();
+}
+function updateThumbActiveStates() {
+  document.querySelectorAll('.gallery-thumb').forEach((t, i) => t.classList.toggle('active', i === mainIdx));
+}
+
+// Tap the main image to open the full-screen lightbox at the current photo
+document.getElementById('galleryMain').addEventListener('click', () => openLightbox(mainIdx));
+
+// Swipe left/right on the main image to move between photos
+let mainTouchX = 0;
+document.getElementById('galleryMain').addEventListener('touchstart', e => { mainTouchX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('galleryMain').addEventListener('touchend', e => {
+  const diff = mainTouchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) goToMain(mainIdx + (diff > 0 ? 1 : -1));
+});
+
+initGallery();
 
 // ── LIGHTBOX ──
 function openLightbox(idx) {
