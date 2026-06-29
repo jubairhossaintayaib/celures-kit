@@ -419,7 +419,25 @@ nav {
   to { transform: translateX(-50%); }
 }
 
-/* ── COUNTDOWN TIMER ── */
+/* ── STOCK CLEARANCE BADGE (mobile only) ── */
+.clearance-badge {
+  background: #c0392b;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  animation: clearance-pulse 1.8s ease-in-out infinite;
+}
+@media (min-width: 900px) { .clearance-badge { display: none; } }
+@keyframes clearance-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.55); }
+  50% { box-shadow: 0 0 0 7px rgba(192, 57, 43, 0); }
+}
 .countdown-section {
   background: var(--black);
   border-radius: 12px;
@@ -519,6 +537,7 @@ nav {
 
     <!-- Product Info -->
     <div class="product-info">
+      <div class="clearance-badge">🔥 Stock Clearance Offer — Limited Stock!</div>
       <div class="countdown-section">
         <div class="countdown-label">⏰ Offer is available until July 8 Midnight.<br>Time remaining:</div>
         <div class="countdown-boxes" id="countdownBoxes">
