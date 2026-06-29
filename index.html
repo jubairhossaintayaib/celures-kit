@@ -104,55 +104,32 @@ nav {
 @media (min-width: 900px) {
   .left-col {
     width: 50%;
-    position: sticky;
-    top: var(--nav-h);
-    height: calc(100vh - var(--nav-h));
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: none;
     border-right: 1px solid var(--gray-200);
   }
-  .left-col::-webkit-scrollbar { display: none; }
 }
 
-/* ── YouTube video ── */
-.video-wrap {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
+/* ── IMAGE GALLERY (replaces video, shown on all screen sizes) ── */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 3px;
+  border-bottom: 1px solid var(--gray-200);
+}
+@media (min-width: 900px) { .image-grid { border-bottom: none; } }
+.grid-thumb {
+  aspect-ratio: 1 / 1;
   overflow: hidden;
+  cursor: pointer;
+  background: var(--gray-100);
   position: relative;
 }
-.video-wrap iframe {
-  position: absolute;
-  top: 0; left: 0;
+.grid-thumb img {
   width: 100%; height: 100%;
-  border: none;
+  object-fit: cover; display: block;
+  transition: transform 0.2s;
 }
-
-/* Desktop image grid */
-.desktop-image-grid { display: none; }
-@media (min-width: 900px) {
-  .desktop-image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-    padding: 3px;
-  }
-  .desktop-image-grid .grid-thumb {
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--gray-100);
-    position: relative;
-  }
-  .desktop-image-grid .grid-thumb img {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-    transition: transform 0.2s;
-  }
-  .desktop-image-grid .grid-thumb:hover img { transform: scale(1.04); }
-}
+.grid-thumb:hover img { transform: scale(1.04); }
 
 /* ── RIGHT COL ── */
 .right-col { width: 100%; }
@@ -257,29 +234,6 @@ nav {
 }
 .perfume-name { font-size: 14px; font-weight: 500; color: var(--black); }
 .perfume-note { font-size: 12px; color: var(--gray-400); margin-top: 16px; font-style: italic; line-height: 1.6; }
-
-/* ── MOBILE IMAGE GRID ── */
-.mobile-image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  padding: 3px;
-  border-bottom: 1px solid var(--gray-200);
-}
-@media (min-width: 900px) { .mobile-image-grid { display: none; } }
-.grid-thumb {
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  cursor: pointer;
-  background: var(--gray-100);
-  position: relative;
-}
-.grid-thumb img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  transition: transform 0.2s;
-}
-.grid-thumb:hover img { transform: scale(1.04); }
 
 /* ── IMAGE LIGHTBOX ── */
 .img-lightbox {
@@ -464,20 +418,20 @@ nav {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
 }
 .countdown-box {
   background: #1c1c1c;
   border: 1px solid #2e2e2e;
   border-radius: 7px;
-  padding: 7px 0;
-  width: 52px;
+  padding: 6px 0;
+  width: 46px;
   text-align: center;
 }
 .countdown-num {
   display: block;
   font-family: ui-monospace, 'SF Mono', 'Roboto Mono', 'Courier New', monospace;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 700;
   color: #ff5b4d;
   line-height: 1;
@@ -485,17 +439,17 @@ nav {
 }
 .countdown-unit {
   display: block;
-  font-size: 9px;
-  letter-spacing: 0.5px;
+  font-size: 8px;
+  letter-spacing: 0.3px;
   text-transform: uppercase;
   color: var(--gray-400);
   margin-top: 3px;
 }
 .countdown-sep {
   color: #555;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  padding-top: 5px;
+  padding-top: 4px;
 }
 .countdown-expired {
   text-align: center;
@@ -523,8 +477,8 @@ nav {
 <!-- MOBILE MARQUEE BANNER (before video, mobile only) -->
 <div class="marquee-banner">
   <div class="marquee-track">
-    <span class="marquee-text">WEEKEND SPECIAL OFFER UNTIL SATURDAY 11:59 PM! GET FREE 30 ML PERFUME WITH OUR DISCOVERY SET!</span>
-    <span class="marquee-text">WEEKEND SPECIAL OFFER UNTIL SATURDAY 11:59 PM! GET FREE 30 ML PERFUME WITH OUR DISCOVERY SET!</span>
+    <span class="marquee-text">🔥 SPECIAL OFFER ENDS JULY 8TH MIDNIGHT! GET A FREE 30ML PERFUME WITH OUR DISCOVERY SET!</span>
+    <span class="marquee-text">🔥 SPECIAL OFFER ENDS JULY 8TH MIDNIGHT! GET A FREE 30ML PERFUME WITH OUR DISCOVERY SET!</span>
   </div>
 </div>
 
@@ -532,13 +486,7 @@ nav {
 
   <!-- ── LEFT COL ── -->
   <div class="left-col">
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/SyRF_dU_gR0?loop=1&playlist=SyRF_dU_gR0&controls=1&rel=0&modestbranding=1&showinfo=0"
-        title="Celures Perfume Discovery Set"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
-    </div>
-    <div class="desktop-image-grid" id="desktopImageGrid"></div>
+    <div class="image-grid" id="imageGrid"></div>
   </div>
 
   <!-- ── RIGHT COL ── -->
@@ -547,8 +495,10 @@ nav {
     <!-- Product Info -->
     <div class="product-info">
       <div class="countdown-section">
-        <div class="countdown-label">⏰ Offer is available until Sunday Midnight.<br>Time remaining:</div>
+        <div class="countdown-label">⏰ Offer is available until July 8 Midnight.<br>Time remaining:</div>
         <div class="countdown-boxes" id="countdownBoxes">
+          <div class="countdown-box"><span class="countdown-num" id="cdDays">00</span><span class="countdown-unit">Days</span></div>
+          <div class="countdown-sep">:</div>
           <div class="countdown-box"><span class="countdown-num" id="cdHours">00</span><span class="countdown-unit">Hours</span></div>
           <div class="countdown-sep">:</div>
           <div class="countdown-box"><span class="countdown-num" id="cdMinutes">00</span><span class="countdown-unit">Minutes</span></div>
@@ -564,7 +514,7 @@ nav {
       <hr class="divider-line">
 
       <div class="price-row">
-        <div class="price-new">৳১,৩৯০</div>
+        <div class="price-new">৳১,২৯০</div>
       </div>
 
       <div class="cod-badge">
@@ -596,9 +546,6 @@ nav {
         style="width:100%; height:52px; background:var(--black); color:var(--white); border:none; border-radius:8px; font-family:var(--sans); font-size:16px; font-weight:500; cursor:pointer; transition:opacity 0.2s;">
         এখনই অর্ডার করতে চাই →
       </button>
-    </div>
-    <div style="border-bottom: 1px solid var(--gray-200); padding: 4px 0;">
-      <div class="mobile-image-grid" id="mobileImageGrid"></div>
     </div>
 
     <!-- WHAT'S IN THE BOX -->
@@ -663,7 +610,7 @@ nav {
 
       <div class="order-total-box">
         <div class="total-label">Order Summary</div>
-        <div class="total-row main"><span>Perfume Discovery Set (10 x 5ml)</span><span>Tk 1,390</span></div>
+        <div class="total-row main"><span>Perfume Discovery Set (10 x 5ml)</span><span>Tk 1,290</span></div>
         <div class="total-row"><span>আপনার Free Gift (30ml)</span><span id="summaryGiftName">—</span></div>
         <div class="total-row" id="summaryDeliveryRow"><span>Delivery</span><span id="deliveryAmt">—</span></div>
         <hr class="total-divider">
@@ -689,7 +636,7 @@ nav {
         <div class="faq-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div>
           <div class="faq-q">এই offer এ কী পাবো?</div>
-          <div class="faq-a">আপনি পাবেন ১০টি বিখ্যাত perfume এর 5ml bottle (Inspired versions) + ১টি 30ml perfume সম্পূর্ণ ফ্রি, যেটা আপনি নিজে বেছে নিতে পারবেন। সব মিলিয়ে মাত্র ১,৩৯০ টাকা + ডেলিভারি চার্জ (ঢাকায় ৮০ টাকা, ঢাকার বাইরে ১১০ টাকা)।</div>
+          <div class="faq-a">আপনি পাবেন ১০টি বিখ্যাত perfume এর 5ml bottle (Inspired versions) + ১টি 30ml perfume সম্পূর্ণ ফ্রি, যেটা আপনি নিজে বেছে নিতে পারবেন। সব মিলিয়ে মাত্র ১,২৯০ টাকা + ডেলিভারি চার্জ (ঢাকায় ৮০ টাকা, ঢাকার বাইরে ১১০ টাকা)।</div>
         </div>
       </div>
 
@@ -783,9 +730,9 @@ function showToast(msg) {
 }
 
 // ── COUNTDOWN TIMER ──
-// Offer ends at June 21, 12:00 AM (Asia/Dhaka time).
+// Offer ends at July 8, 12:00 AM (Asia/Dhaka time).
 // ⚠️ Update this date for future campaigns — format: 'YYYY-MM-DDTHH:MM:SS+06:00'
-const OFFER_DEADLINE = new Date('2026-06-21T00:00:00+06:00');
+const OFFER_DEADLINE = new Date('2026-07-08T00:00:00+06:00');
 let offerExpired = false;
 let countdownInterval = null;
 
@@ -803,9 +750,11 @@ function updateCountdown() {
   }
 
   const totalSeconds = Math.floor(diff / 1000);
-  const hours   = Math.floor(totalSeconds / 3600);
+  const days    = Math.floor(totalSeconds / 86400);
+  const hours   = Math.floor((totalSeconds % 86400) / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
+  document.getElementById('cdDays').textContent    = String(days).padStart(2, '0');
   document.getElementById('cdHours').textContent   = String(hours).padStart(2, '0');
   document.getElementById('cdMinutes').textContent = String(minutes).padStart(2, '0');
   document.getElementById('cdSeconds').textContent = String(seconds).padStart(2, '0');
@@ -887,9 +836,8 @@ const GALLERY_IMAGES = Array.from({length: 8}, (_, i) => `images/gallery${i+1}.p
 let validImages = [], lightboxIdx = 0;
 
 function initImageGrids() {
-  const mobileGrid  = document.getElementById('mobileImageGrid');
-  const desktopGrid = document.getElementById('desktopImageGrid');
-  const lbTrack     = document.getElementById('lightboxTrack');
+  const grid    = document.getElementById('imageGrid');
+  const lbTrack = document.getElementById('lightboxTrack');
 
   GALLERY_IMAGES.forEach((src) => {
     const probe = new Image();
@@ -900,17 +848,11 @@ function initImageGrids() {
       lbSlide.innerHTML = `<img src="${src}" alt="Product photo">`;
       lbTrack.appendChild(lbSlide);
 
-      const mThumb = document.createElement('div');
-      mThumb.className = 'grid-thumb';
-      mThumb.innerHTML = `<img src="${src}" alt="Product">`;
-      mThumb.onclick = () => openLightbox(validImages.indexOf(src));
-      mobileGrid.appendChild(mThumb);
-
-      const dThumb = document.createElement('div');
-      dThumb.className = 'grid-thumb';
-      dThumb.innerHTML = `<img src="${src}" alt="Product">`;
-      dThumb.onclick = () => openLightbox(validImages.indexOf(src));
-      desktopGrid.appendChild(dThumb);
+      const thumb = document.createElement('div');
+      thumb.className = 'grid-thumb';
+      thumb.innerHTML = `<img src="${src}" alt="Product">`;
+      thumb.onclick = () => openLightbox(validImages.indexOf(src));
+      grid.appendChild(thumb);
     };
     probe.src = src;
   });
@@ -995,7 +937,7 @@ function updateTotal() {
     return;
   }
   const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 110;
-  const total = 1390 + delivery;
+  const total = 1290 + delivery;
   document.getElementById('deliveryAmt').textContent    = 'Tk ' + delivery;
   document.getElementById('totalAmt').textContent       = 'Tk ' + total;
   document.getElementById('totalFinal').style.display   = 'flex';
@@ -1059,7 +1001,7 @@ async function submitOrder() {
 
   const giftLabel = gift === 'suggestion' ? 'Need suggestion' : gift;
   const delivery = selectedDistrict.toLowerCase() === 'dhaka' ? 80 : 110;
-  const total = 1390 + delivery;
+  const total = 1290 + delivery;
   const payload = {
     name, phone,
     district: selectedDistrict,
